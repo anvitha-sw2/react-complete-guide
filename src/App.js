@@ -1,6 +1,8 @@
-import Expenses from './components/Expenses';
+import Expenses from './components/Expenses/Expenses';
+import NewExpense from './components/NewExpense/NewExpense';
+// import React from 'react';
 
-function App() {
+const App = () => {
 
   const expenses = [
     {
@@ -24,12 +26,31 @@ function App() {
     },
   ];
 
+  const addExpenseHandler = expense => {
+    console.log('In App.js');
+    console.log(expense);
+  };
+
+  const onAddFilterHandler = year => {
+    console.log('In App.js');
+    console.log(year);
+  };
+
   return (
     <div>
-      <h2>Let's get started!</h2>
-      <Expenses expenses={expenses} />
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} onAddFilter={onAddFilterHandler}/>
     </div>
   );
+
+  //below is using React inbuilt method - we dont prefer it because it gets complicated to read it for larger projects
+  // return React.createElement(
+  //   'div', 
+  //   {}, 
+  //   React.createElement('h2', {}, 'Let\'s get started!'),
+  //   React.createElement(Expenses, { items : expenses })
+  //   );
+  
 }
 
 export default App;
